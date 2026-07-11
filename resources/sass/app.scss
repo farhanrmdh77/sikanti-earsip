@@ -1,0 +1,57 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// ==========================================
+// KUSTOMISASI UI/UX SIKANTI (ELEGAN & EMAS)
+// ==========================================
+
+/* Kustomisasi Card (Kotak Form Login/Register) */
+.card {
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* Bayangan lembut agar terkesan mengambang */
+    border: none;
+}
+
+/* Kustomisasi Header Card */
+.card-header {
+    background-color: #0f172a; /* Navy Gelap */
+    color: #C8A35A; /* Emas */
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    text-align: center;
+    border-bottom: 3px solid #C8A35A; /* Garis aksen emas tegas di bawah header */
+}
+
+/* Kustomisasi Tombol Primary */
+.btn-primary {
+    background-color: #C8A35A;
+    border-color: #C8A35A;
+    font-weight: bold;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efek saat tombol disorot (Hover) */
+.btn-primary:hover, 
+.btn-primary:focus, 
+.btn-primary:active {
+    background-color: #a38246 !important;
+    border-color: #a38246 !important;
+    box-shadow: 0 4px 12px rgba(200, 163, 90, 0.4); /* Efek pendaran/glow emas */
+}
+
+/* Kustomisasi Input Form saat di-klik (Focus) */
+.form-control:focus {
+    border-color: #C8A35A;
+    box-shadow: 0 0 0 0.2rem rgba(200, 163, 90, 0.25); /* Pendaran garis luar form warna emas */
+}

@@ -1,0 +1,36 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography (Jika nanti ingin memakai Poppins, bisa diganti di sini)
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors (Bawaan Laravel)
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+// ==========================================
+// PALET WARNA KHUSUS SIKANTI (E-ARSIP)
+// ==========================================
+$gold-sikanti: #C8A35A;
+$navy-sikanti: #0f172a;
+
+// Override Tema Bawaan Bootstrap
+$primary: $gold-sikanti;
+$secondary: $navy-sikanti;
+
+// Kustomisasi Radius dan Border (Opsional untuk tampilan lebih modern)
+$border-radius: 0.5rem;
+$card-border-color: #e2e8f0;
+$card-border-radius: 12px;
+$input-border-radius: 8px;
+$btn-border-radius: 8px;
