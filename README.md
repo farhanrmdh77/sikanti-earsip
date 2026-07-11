@@ -4,7 +4,7 @@ SIKANTI adalah sistem informasi kearsipan digital berbasis web yang dikembangkan
 
 Aplikasi ini mendigitalkan tata kelola ordner fisik menjadi direktori virtual yang terstruktur, lengkap dengan sistem keamanan berbasis pemindaian QR Code untuk melacak keluarnya dokumen rahasia.
 
-## ✨ Fitur Unggulan
+## Fitur Unggulan
 * **Gudang Klasifikasi:** Manajemen direktori folder tak terbatas berdasarkan nomenklatur arsip (Contoh: KP.00, KP.01).
 * **JRA (Jadwal Retensi Arsip) Otomatis:** Perhitungan otomatis masa retensi aktif, inaktif, dan penentuan Nasib Akhir (Musnah/Permanen).
 * **Verifikasi Akses QR Code:** Dokumen fisik dilindungi oleh stiker QR. Pemindai harus meminta izin akses secara *real-time* kepada Admin untuk membuka kunci file digital.
@@ -12,7 +12,7 @@ Aplikasi ini mendigitalkan tata kelola ordner fisik menjadi direktori virtual ya
 * **Manajemen Tim Terpusat:** Registrasi publik ditutup (*closed-loop*). Seluruh akun dikelola secara otoritatif oleh Administrator.
 * **Riwayat Aktivitas (Audit Trail):** Merekam setiap jejak operasional pengguna di dalam sistem untuk kebutuhan pengawasan.
 
-## 🛠️ Spesifikasi Teknologi (Tech Stack)
+## Spesifikasi Teknologi (Tech Stack)
 * **Framework:** Laravel (PHP)
 * **Database:** MySQL
 * **Frontend:** Blade Templating, Bootstrap 4, FontAwesome 6
@@ -20,7 +20,7 @@ Aplikasi ini mendigitalkan tata kelola ordner fisik menjadi direktori virtual ya
   * `SweetAlert2` (Notifikasi UI)
   * `PDF.js` (Viewer PDF Client-side)
 
-## ⚙️ Panduan Instalasi (Untuk Tim IT)
+## Panduan Instalasi (Untuk Tim IT)
 
 Ikuti langkah-langkah di bawah ini untuk menjalankan SIKANTI di peladen (*server*) atau komputer lokal Anda.
 
@@ -34,31 +34,30 @@ Ikuti langkah-langkah di bawah ini untuk menjalankan SIKANTI di peladen (*server
    ```bash
    git clone [https://github.com/farhanrmdh77/sikanti-earsip.git](https://github.com/farhanrmdh77/sikanti-earsip.git)
    cd sikanti-earsip
-Instalasi Dependensi
 
+1. Instalasi Dependensi
 Bash
 composer install
-Konfigurasi Environment
-Salin file konfigurasi bawaan dan sesuaikan dengan kredensial database Anda.
 
+2. Konfigurasi Environment
+Salin file konfigurasi bawaan dan sesuaikan dengan kredensial database Anda.
 Bash
 cp .env.example .env
 Buka file .env dan atur DB_DATABASE, DB_USERNAME, dan DB_PASSWORD Anda.
 
-Generate Application Key
-
+3. Generate Application Key
 Bash
 php artisan key:generate
-Migrasi Database
+
+4. Migrasi Database
 (Pastikan Anda telah mengimpor file db_sikanti_final.sql ke dalam database Anda melalui phpMyAdmin).
 
-Tautkan Storage (Sangat Penting!)
+5. Tautkan Storage (Sangat Penting!)
 Agar gambar, logo, dan file PDF dapat diakses oleh publik/sistem:
-
 Bash
 php artisan storage:link
-Jalankan Aplikasi
 
+6. Jalankan Aplikasi
 Bash
 php artisan serve --host=0.0.0.0 --port=8000
 Aplikasi kini dapat diakses melalui browser di http://localhost:8000 atau via IP lokal jaringan Anda.
