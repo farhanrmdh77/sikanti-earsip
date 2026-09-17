@@ -70,7 +70,7 @@
     .badge-yellow { background-color: #fef3c7; color: #d97706; }
     .badge-red { background-color: #ffe4e6; color: #e11d48; }
 
-    .timeline { border-left: 2px solid #e2e8f0; padding-left: 25px; list-style: none; margin: 0; }
+    .timeline { border-left: 2px solid #e2e8f0; padding-left: 25px; list-style: none; margin: 0 0 0 15px; }
     .timeline-item { position: relative; margin-bottom: 30px; }
     .timeline-item:last-child { margin-bottom: 0; }
     .timeline-item::before { content: ''; position: absolute; left: -32px; top: 2px; width: 12px; height: 12px; border-radius: 50%; background-color: #2563eb; border: 3px solid #fff; box-shadow: 0 0 0 4px #eff6ff; }
@@ -231,9 +231,11 @@
                 <p class="mb-0" style="color: #94a3b8; font-size: 1.05rem; max-width: 600px;">Pusat kendali arsip Anda siap digunakan. Pantau volume dokumen dan aktivitas pergerakan klasifikasi subbagian Anda hari ini.</p>
             </div>
             <div class="d-none d-lg-block" style="z-index: 1;">
-                <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); padding: 15px 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
-                    <div style="color: #94a3b8; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">TANGGAL SISTEM</div>
-                    <div style="font-size: 1.2rem; font-weight: 700; color: #fff;">{{ \Carbon\Carbon::now()->locale('id')->isoFormat('D MMMM YYYY') }}</div>
+                <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); padding: 15px 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); min-width: 140px; text-align: center;">
+                    <div style="color: #94a3b8; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 10px;">TANGGAL SISTEM</div>
+                    <div style="font-size: 3.5rem; font-weight: 800; color: #fff; line-height: 0.8;">{{ \Carbon\Carbon::now()->format('d') }}</div>
+                    <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-top: 8px; line-height: 1;">{{ \Carbon\Carbon::now()->locale('id')->isoFormat('MMMM') }}</div>
+                    <div style="font-size: 1rem; font-weight: 500; color: #cbd5e1; line-height: 1.2; margin-top: 2px;">{{ \Carbon\Carbon::now()->format('Y') }}</div>
                 </div>
             </div>
         </div>

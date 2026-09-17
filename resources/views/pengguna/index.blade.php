@@ -381,7 +381,7 @@
                 
                 <div class="modal-footer px-5 py-4 border-0">
                     <button type="button" class="btn btn-light font-weight-bold" style="border-radius: 12px; padding: 12px 25px; color: #64748b; background: #e2e8f0; border: none;" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary font-weight-bold" style="border-radius: 12px; padding: 12px 30px; background: #2563eb; border: none; box-shadow: 0 8px 15px rgba(37, 99, 235, 0.25);">
+                    <button type="submit" class="btn btn-primary font-weight-bold" style="border-radius: 12px; padding: 12px 30px; background: #2563eb; color: #ffffff; border: none; box-shadow: 0 8px 15px rgba(37, 99, 235, 0.25);">
                         <i class="fa-solid fa-save mr-2"></i> Simpan Pengguna
                     </button>
                 </div>
@@ -456,7 +456,7 @@
                     
                     <div class="modal-footer px-5 py-4 border-0">
                         <button type="button" class="btn btn-light font-weight-bold" style="border-radius: 12px; padding: 12px 25px; color: #64748b; background: #e2e8f0; border: none;" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary font-weight-bold" style="border-radius: 12px; padding: 12px 30px; background: #2563eb; border: none; box-shadow: 0 8px 15px rgba(37, 99, 235, 0.25);">
+                        <button type="submit" class="btn btn-primary font-weight-bold" style="border-radius: 12px; padding: 12px 30px; background: #2563eb; color: #ffffff; border: none; box-shadow: 0 8px 15px rgba(37, 99, 235, 0.25);">
                             Simpan Perubahan
                         </button>
                     </div>

@@ -69,7 +69,7 @@
     .btn-delete { background-color: #ef4444; } 
 
     .text-truncate-wrapper { min-width: 0; flex: 1; padding-right: 10px; }
-    .text-truncate-custom { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; white-space: normal; line-height: 1.3; max-width: 100%; }
+    .text-truncate-custom { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; white-space: normal; line-height: 1.5; padding-bottom: 2px; max-width: 100%; }
 
     /* CHECKBOX MASSAL */
     .checkbox-column { display: none; }
@@ -274,25 +274,29 @@
         <div class="saas-card mb-5">
             
             <div class="d-flex justify-content-between align-items-center px-4 py-3 bg-white flex-wrap" style="border-bottom: 1px solid #f1f5f9;">
-                <div class="mb-2 mb-md-0">
-                    <h5 class="font-weight-bold text-dark mb-0" style="font-size: 1.1rem;">Daftar Berkas Terdaftar</h5>
+                <div class="w-100 mb-4">
+                    <h5 class="font-weight-bold mb-0" style="color: #1e293b; font-size: 1.1rem;">Daftar Berkas Terdaftar</h5>
                     <p class="mb-0 mt-1" style="color: #64748b; font-size: 0.85rem;" id="tableDescription">Kelola dokumen di dalam folder klasifikasi ini secara detail.</p>
                 </div>
                 
-                <div class="d-flex align-items-center flex-wrap gap-2">
-                    <button type="button" id="btnToggleMode" class="btn btn-light border btn-sm font-weight-bold mr-2 shadow-sm mb-2 mb-md-0" style="border-radius: 8px; color: #475569; padding: 5px 12px; font-size: 0.75rem; white-space: nowrap;" onclick="toggleSelectionMode()">
+                <div class="d-flex align-items-center flex-wrap" style="gap: 15px;">
+                    <button type="button" id="btnToggleMode" class="btn btn-secondary border-0 btn-sm font-weight-bold shadow-sm" style="border-radius: 8px; color: #ffffff; padding: 8px 15px; font-size: 0.85rem; white-space: nowrap;" onclick="toggleSelectionMode()">
                         <i class="fa-solid fa-list-check mr-1"></i> Pilih Massal
                     </button>
 
-                    <button type="button" id="btnHapusMassal" class="btn btn-danger btn-sm font-weight-bold mr-2 shadow-sm mb-2 mb-md-0" style="display: none; border-radius: 8px; padding: 5px 12px; font-size: 0.75rem; white-space: nowrap;" onclick="konfirmasiHapusMassal()">
+                    <button type="button" id="btnHapusMassal" class="btn btn-danger btn-sm font-weight-bold shadow-sm" style="display: none; border-radius: 8px; padding: 8px 15px; font-size: 0.85rem; white-space: nowrap; color: #ffffff;" onclick="konfirmasiHapusMassal()">
                         <i class="fa-solid fa-trash-can mr-1"></i> Hapus (<span id="countTerpilih">0</span>)
                     </button>
                     
-                    <a href="{{ route('arsip.create', $kategori->id) }}" id="btnRegistrasi" class="btn btn-primary-modern btn-sm mr-3 mb-2 mb-md-0" style="padding: 8px 15px; border-radius: 8px; font-size: 0.85rem; text-decoration: none;">
+                    <a href="{{ route('arsip.export_pdf', array_merge(['kategori_id' => $kategori->id], request()->query())) }}" class="btn btn-sm shadow-sm" style="background-color: #ef4444; color: #ffffff; border-radius: 8px; padding: 8px 15px; font-size: 0.85rem; font-weight: 600; white-space: nowrap; text-decoration: none; border: none; transition: 0.3s;" onmouseover="this.style.backgroundColor='#dc2626'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#ef4444'; this.style.transform='translateY(0)'">
+                        <i class="fa-solid fa-file-pdf mr-1"></i> Unduh PDF
+                    </a>
+
+                    <a href="{{ route('arsip.create', $kategori->id) }}" id="btnRegistrasi" class="btn btn-primary-modern btn-sm" style="padding: 8px 15px; border-radius: 8px; font-size: 0.85rem; text-decoration: none; color: #ffffff;">
                         <i class="fa-solid fa-plus mr-1"></i> Registrasi Arsip
                     </a>
                     
-                    <span id="badgeTotal" class="badge mb-2 mb-md-0" style="background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; padding: 8px 15px; border-radius: 8px; font-weight: 600; font-size: 0.85rem;">
+                    <span id="badgeTotal" class="badge" style="background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; padding: 8px 15px; border-radius: 8px; font-weight: 600; font-size: 0.85rem;">
                         Total: {{ method_exists($arsips, 'total') ? $arsips->total() : $arsips->count() }}
                     </span>
                 </div>
@@ -367,10 +371,10 @@
                 <table class="table table-modern mb-0" style="table-layout: fixed; width: 100%; min-width: 800px;">
                     <thead>
                         <tr>
-                            <th width="4%" class="pl-4 checkbox-column text-center border-right">
-                                <div class="custom-control custom-checkbox custom-checkbox-circle">
+                            <th width="4%" class="checkbox-column text-center">
+                                <div class="custom-control custom-checkbox custom-checkbox-circle d-flex justify-content-center">
                                     <input type="checkbox" class="custom-control-input" id="checkAll">
-                                    <label class="custom-control-label" for="checkAll"></label>
+                                    <label class="custom-control-label" for="checkAll" style="margin-right: -1.5rem;"></label>
                                 </div>
                             </th>
                             <th width="4%" class="number-column text-center">NO</th>
@@ -383,10 +387,10 @@
                     <tbody>
                         @forelse($arsips as $arsip)
                             <tr>
-                                <td class="pl-4 checkbox-column text-center border-right bg-light">
-                                    <div class="custom-control custom-checkbox custom-checkbox-circle mt-1">
+                                <td class="checkbox-column text-center bg-light">
+                                    <div class="custom-control custom-checkbox custom-checkbox-circle mt-1 d-flex justify-content-center">
                                         <input type="checkbox" class="custom-control-input checkItem" name="ids[]" value="{{ $arsip->id }}" id="checkItem{{ $arsip->id }}">
-                                        <label class="custom-control-label" for="checkItem{{ $arsip->id }}"></label>
+                                        <label class="custom-control-label" for="checkItem{{ $arsip->id }}" style="margin-right: -1.5rem;"></label>
                                     </div>
                                 </td>
                                 <td class="font-weight-bold text-muted text-center number-column" style="font-size: 0.75rem;">{{ $loop->iteration }}</td>
@@ -446,9 +450,9 @@
                                         <button type="button" class="btn-action-square btn-qr" title="Scan QR Code" data-toggle="modal" data-target="#modalQR{{ $arsip->id }}">
                                             <i class="fa-solid fa-qrcode"></i>
                                         </button>
-                                        <button type="button" class="btn-action-square btn-detail" title="Detail Arsip" data-toggle="modal" data-target="#modalDetail{{ $arsip->id }}">
+                                        <a href="{{ route('arsip.show', [$kategori->id, $arsip->id]) }}" class="btn-action-square btn-detail" title="Detail Arsip">
                                             <i class="fa-regular fa-eye"></i>
-                                        </button>
+                                        </a>
                                         
                                         <a href="{{ route('arsip.edit', [$kategori->id, $arsip->id]) }}" class="btn-action-square btn-edit" title="Edit Arsip">
                                             <i class="fa-solid fa-pen"></i>
@@ -620,79 +624,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalDetail{{ $arsip->id }}" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title font-weight-bold text-dark" style="font-size: 1.1rem;">
-                        <i class="fa-solid fa-circle-info text-primary mr-2"></i>Detail Uraian Arsip
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
-                </div>
-                <div class="modal-body p-4">
-                    <div class="row">
-                        <div class="col-md-5 border-right pr-4">
-                            <h6 class="font-weight-bold text-primary mb-3" style="font-size: 0.85rem;"><i class="fa-solid fa-list-check mr-2"></i>Spesifikasi Berkas</h6>
-                            <table class="table table-borderless table-sm mb-0" style="font-size: 0.8rem;">
-                                <tr>
-                                    <td width="40%" class="text-muted font-weight-bold pb-2">KODE KLASIFIKASI</td>
-                                    <td class="pb-2">: <strong class="text-dark">{{ Auth::user()->subbagian->kode_klasifikasi }}.{{ $arsip->nomor_dokumen }}</strong></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted font-weight-bold pb-2">NAMA BERKAS</td>
-                                    <td class="pb-2">: <span class="text-dark font-weight-bold">{{ $arsip->nama_arsip }}</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted font-weight-bold pb-2">TAHUN & JUMLAH</td>
-                                    <td class="pb-2">: {{ $arsip->tahun_berkas ?? '-' }} ({{ $arsip->jumlah_berkas }} Berkas)</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted font-weight-bold pb-2">JADWAL RETENSI</td>
-                                    <td class="pb-2">: Aktif ({{ $arsip->retensi_aktif ?? '-' }} Thn) | Inaktif ({{ $arsip->retensi_inaktif ?? '-' }} Thn)</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted font-weight-bold pb-2">STATUS JRA</td>
-                                    <td class="pb-2">: 
-                                        @if($arsip->status_retensi == 'Musnah') <span class="badge-modern badge-red">Telah Musnah</span>
-                                        @elseif($arsip->status_retensi == 'Permanen') <span class="badge-modern badge-blue">Permanen</span>
-                                        @elseif($arsip->status_retensi == 'Inaktif') <span class="badge-modern badge-yellow">Inaktif</span>
-                                        @else <span class="badge-modern badge-green">Aktif</span> @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted font-weight-bold pb-2">NASIB AKHIR</td>
-                                    <td class="pb-2">: {{ $arsip->nasib_akhir ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted font-weight-bold pb-2">LOKASI & WARNA</td>
-                                    <td class="pb-2">: {{ $arsip->lokasi_fisik ?? '-' }} <span class="badge badge-light border ml-1">{{ $arsip->warna_berkas ?? '-' }}</span></td>
-                                </tr>
-                            </table>
-                        </div>
-                        
-                        <div class="col-md-7 pl-4 d-flex flex-column justify-content-between">
-                            <div>
-                                <h6 class="font-weight-bold text-warning mb-3" style="font-size: 0.85rem;"><i class="fa-solid fa-align-left mr-2"></i>Uraian Deskripsi</h6>
-                                <div class="p-3 rounded" style="background: #f8fafc; min-height: 120px; max-height: 180px; overflow-y: auto; font-size: 0.85rem; line-height: 1.6; border: 1px solid #e2e8f0; border-left: 4px solid #C8A35A;">{{ $arsip->keterangan ?? 'Tidak ada deskripsi yang dilampirkan.' }}</div>
-                            </div>
-                            
-                            <div class="mt-4">
-                                @if($arsip->file_dokumen)
-                                    <a href="{{ asset('storage/arsip_dokumen/'.$arsip->file_dokumen) }}" target="_blank" class="btn btn-primary-modern w-100 justify-content-center py-2" style="font-size: 0.85rem;">
-                                        <i class="fa-solid fa-file-signature mr-2"></i> Buka / Unduh File Digital
-                                    </a>
-                                @else
-                                    <button class="btn w-100 py-2 font-weight-bold" style="background: #f1f5f9; color: #94a3b8; border-radius: 10px; cursor: not-allowed; font-size: 0.85rem;" disabled>
-                                        <i class="fa-solid fa-ban mr-2"></i> Tidak Ada File Digital
-                                    </button>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @endforeach
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

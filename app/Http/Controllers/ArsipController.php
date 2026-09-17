@@ -126,6 +126,14 @@ class ArsipController extends Controller
         return view('arsip.edit', compact('kategori', 'arsip'));
     }
 
+    public function show($kategori_id, $id)
+    {
+        $kategori = Kategori::where('subbag_id', Auth::user()->subbag_id)->findOrFail($kategori_id);
+        $arsip = Arsip::where('subbag_id', Auth::user()->subbag_id)->findOrFail($id);
+        
+        return view('arsip.show', compact('kategori', 'arsip'));
+    }
+
     public function update(Request $request, $kategori_id, $id)
     {
         $arsip = Arsip::where('subbag_id', Auth::user()->subbag_id)->findOrFail($id);
@@ -232,5 +240,44 @@ class ArsipController extends Controller
         ]);
 
         return redirect()->back()->with('success', $jumlah . ' dokumen berhasil dihapus secara massal!');
+    }
+
+    public function exportPdf(Request $request, $kategori_id)
+    {
+        $kategori = Kategori::where('subbag_id', Auth::user()->subbag_id)->findOrFail($kategori_id);
+        
+        $arsips = Arsip::where('kategori_id', $kategori_id)->latest();
+
+        if ($request->filled('search')) {
+            $arsips->where(function($q) use ($request) {
+                $q->where('nama_arsip', 'like', '%' . $request->search . '%')
+                ->orWhere('nomor_dokumen', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        if ($request->filled('status_file')) {
+            if ($request->status_file == 'ada') {
+                $arsips->whereNotNull('file_dokumen');
+            } elseif ($request->status_file == 'tidak') {
+                $arsips->whereNull('file_dokumen');
+            }
+        }
+
+        if ($request->filled('lokasi_fisik')) {
+            $arsips->where('lokasi_fisik', $request->lokasi_fisik);
+        }
+
+        $arsips = $arsips->get();
+
+        if ($request->filled('status_jra')) {
+            $arsips = $arsips->filter(function($arsip) use ($request) {
+                return $arsip->status_retensi == $request->status_jra;
+            });
+        }
+
+        $pdf = \PDF::loadView('arsip.pdf', compact('kategori', 'arsips'))->setPaper('a4', 'landscape');
+        $nama_file = 'Laporan_Arsip_' . \Str::slug($kategori->nama_kategori) . '_' . date('Ymd_His') . '.pdf';
+        
+        return $pdf->download($nama_file);
     }
 }

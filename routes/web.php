@@ -43,10 +43,12 @@ Route::middleware(['auth'])->group(function () {
     
     // Route untuk Isi Folder (Arsip) berdasarkan Kategori ID
     Route::get('/kategori/{kategori_id}/arsip', 'ArsipController@index')->name('arsip.index');
+    Route::get('/kategori/{kategori_id}/arsip/export-pdf', 'ArsipController@exportPdf')->name('arsip.export_pdf');
     
-    // INI ADALAH ROUTE BARU UNTUK HALAMAN EDIT YANG DITAMBAHKAN 
-    Route::get('/kategori/{kategori_id}/arsip/{id}/edit', 'ArsipController@edit')->name('arsip.edit');
+    // INI ADALAH ROUTE BARU UNTUK HALAMAN EDIT DAN SHOW YANG DITAMBAHKAN 
     Route::get('/kategori/{kategori_id}/arsip/create', 'ArsipController@create')->name('arsip.create');
+    Route::get('/kategori/{kategori_id}/arsip/{id}/edit', 'ArsipController@edit')->name('arsip.edit');
+    Route::get('/kategori/{kategori_id}/arsip/{id}', 'ArsipController@show')->name('arsip.show');
 
     Route::post('/kategori/{kategori_id}/arsip', 'ArsipController@store')->name('arsip.store');
     Route::put('/kategori/{kategori_id}/arsip/{id}', 'ArsipController@update')->name('arsip.update');
